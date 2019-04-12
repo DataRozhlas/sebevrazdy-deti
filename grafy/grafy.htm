@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+
+<wide><div style="width: 600px; height: 500px" id="casovarada"></div></wide>
+
+<wide><div style="width: 600px; height: 500px" id="vekoveskupiny"></div></wide>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+
+<script type="text/javascript">
+
+var colors1 = ['#EA614A','#ECA038','#A38456','#008836','#20649B','#6B96CA','#A87A93','#D19C95'];
+
+var roky = [1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017];
+
+var deti = [3.2,4.0,3.3,3.1,2.7,2.9,2.6,2.2,2.5,2.6,2.6,2.2,2.3,1.6,2.5,1.9,2.5,2.8,2.3,3.3,2.5,2.0,2.7,3.3];
+
+var vsichni = [0.8,7.5,10.4,13.0,12.4,13.5,16.3,17.9,20.4,19.7,17.4,15.9,17.4,19.8,25.0,28.1];
+
+var vek = ['10-14','15-19','20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-64','65-69','70-74','75-79','80-84','85+'];
+
+Highcharts.chart('casovarada', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Sebevraždy 15-19letých'
+    },
+    subtitle: {
+        text: 'ČR, muži i ženy, posledních 25 let'
+    },
+    xAxis: {
+        title: {
+            text: ''
+        },
+        categories: roky
+    },
+    yAxis: {
+        title: {
+            text: 'sebevražd na 100 000 obyv.'
+        }
+    },
+    tooltip: {
+        pointFormat: '<b>{point.y} sebevražd</b> na 100 000 obyv. ve věku 15-19 let<br/>',
+    },
+    exporting: {
+        enabled: false
+    },
+    credits: {
+        href: 'https://reporting.uzis.cz/',
+        text: 'Zdroj: ÚZIS'
+    },
+    plotOptions: {
+        series: {
+            marker: {
+                symbol: 'circle'
+            }
+        }
+    },
+    series: [{
+        name: 'Sebevraždy',
+        data: deti,
+        color: colors1[0]
+    }]
+});
+
+Highcharts.chart('vekoveskupiny', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Sebevraždy podle věku'
+    },
+    subtitle: {
+        text: 'ČR, muži i ženy, v letech 2013 až 2017'
+    },
+    xAxis: {
+        title: {
+            text: 'věk'
+        },
+        categories: vek
+    },
+    yAxis: {
+        title: {
+            text: 'sebevražd na 100 000 obyv.'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.point.y + ' sebevražd</b> na 100 000 obyv. ve věku ' + this.series.xAxis.categories[this.point.x] + ' let<br/>'
+        }
+    },
+    exporting: {
+        enabled: false
+    },
+    credits: {
+        href: 'https://reporting.uzis.cz/',
+        text: 'Zdroj: ÚZIS'
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            marker: {
+                symbol: 'circle'
+            }
+        }
+    },
+    series: [{
+        name: 'věk',
+        data: vsichni,
+        color: colors1[2]
+    }]
+});
+
+		</script>
+	</body>
+</html>
+
